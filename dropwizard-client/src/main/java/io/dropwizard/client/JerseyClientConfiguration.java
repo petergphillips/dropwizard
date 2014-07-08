@@ -80,4 +80,35 @@ public class JerseyClientConfiguration extends HttpClientConfiguration {
     public boolean isCompressionConfigurationValid() {
         return !gzipEnabledForRequests || gzipEnabled;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + (gzipEnabled ? 1231 : 1237);
+        result = prime * result + (gzipEnabledForRequests ? 1231 : 1237);
+        result = prime * result + maxThreads;
+        result = prime * result + minThreads;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        JerseyClientConfiguration other = (JerseyClientConfiguration) obj;
+        if (gzipEnabled != other.gzipEnabled)
+            return false;
+        if (gzipEnabledForRequests != other.gzipEnabledForRequests)
+            return false;
+        if (maxThreads != other.maxThreads)
+            return false;
+        if (minThreads != other.minThreads)
+            return false;
+        return true;
+    }
 }

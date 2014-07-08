@@ -31,6 +31,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.URI;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -265,5 +266,20 @@ public class HttpClientBuilderTest {
         AbstractHttpClient client = (AbstractHttpClient) builder.using(config).using(credentialsProvider).build("test");
 
         assertThat(client.getCredentialsProvider()).isEqualTo(credentialsProvider);
+    }
+
+    @Test
+    public void setsTheProxyUri() {
+        configuration.setProxyUri(Optional.of("http://localhost:8080"));
+
+        final AbstractHttpClient client = (AbstractHttpClient) builder.using(configuration).build("test");
+        assertThat(client.getParams().getParameter(AllClientPNames.DEFAULT_PROXY)).isEqualTo(
+                URI.create("http://localhost:8080"));
+    }
+
+    @Test
+    public void ignoresTheProxyUri() {
+        final AbstractHttpClient client = (AbstractHttpClient) builder.using(configuration).build("test");
+        assertThat(client.getParams().getParameter(AllClientPNames.DEFAULT_PROXY)).isNull();
     }
 }

@@ -1,0 +1,12 @@
+{
+   "timeout":"1 hour",
+   "connectionTimeout":"50 minutes",
+   "timeToLive":"23 seconds",
+   "cookiesEnabled":false,
+   "maxConnections":5,
+   "maxConnectionsPerRoute":23,
+   "keepAlive":"20 minutes",
+   "retries":2,
+   "userAgent":"htmlunit",
+   "proxyUri":"http://localhost:8080"
+}

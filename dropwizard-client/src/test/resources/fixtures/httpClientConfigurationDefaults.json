@@ -1,0 +1,12 @@
+{
+   "timeout":"500 milliseconds",
+   "connectionTimeout":"500 milliseconds",
+   "timeToLive":"1 hour",
+   "cookiesEnabled":false,
+   "maxConnections":1024,
+   "maxConnectionsPerRoute":1024,
+   "keepAlive":"0 milliseconds",
+   "retries":0,
+   "userAgent":null,
+   "proxyUri":null
+}

@@ -23,6 +23,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.protocol.HttpContext;
 
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * A convenience class for building {@link HttpClient} instances.
@@ -203,6 +204,11 @@ public class HttpClientBuilder {
 
         params.setParameter(AllClientPNames.TCP_NODELAY, Boolean.TRUE);
         params.setParameter(AllClientPNames.STALE_CONNECTION_CHECK, Boolean.FALSE);
+
+        if (configuration.getProxyUri().isPresent()) {
+            final URI proxy = URI.create(configuration.getProxyUri().get());
+            params.setParameter(AllClientPNames.DEFAULT_PROXY, proxy);
+        }
 
         return params;
     }
