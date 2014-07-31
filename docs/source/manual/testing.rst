@@ -27,10 +27,7 @@ writing via a ``PUT`` request) and a response entity (e.g., when reading via a `
 .. code-block:: java
 
     public class Person {
-        @JsonProperty
         private String name;
-
-        @JsonProperty
         private String email;
 
         private Person() {
@@ -42,18 +39,22 @@ writing via a ``PUT`` request) and a response entity (e.g., when reading via a `
             this.email = email;
         }
 
+        @JsonProperty
         public String getName() {
             return name;
         }
 
+        @JsonProperty
         public void setName(String name) {
             this.name = name;
         }
 
+        @JsonProperty
         public String getEmail() {
             return email;
         }
 
+        @JsonProperty
         public void setEmail(String email) {
             this.email = email;
         }
@@ -88,7 +89,7 @@ Next, write a test for serializing a ``Person`` instance to JSON:
 .. code-block:: java
 
     import static io.dropwizard.testing.FixtureHelpers.*;
-    import static org.fest.assertions.api.Assertions.assertThat;
+    import static org.assertj.core.api.Assertions.assertThat;
     import io.dropwizard.jackson.Jackson;
     import org.junit.Test;
     import com.fasterxml.jackson.databind.ObjectMapper;
@@ -105,11 +106,11 @@ Next, write a test for serializing a ``Person`` instance to JSON:
         }
     }
 
-This test uses `FEST matchers`_ and JUnit_ to test that when a ``Person`` instance is serialized
+This test uses `AssertJ assertions`_ and JUnit_ to test that when a ``Person`` instance is serialized
 via Jackson it matches the JSON in the fixture file. (The comparison is done via a normalized JSON
 string representation, so whitespace doesn't affect the results.)
 
-.. _FEST matchers: https://code.google.com/p/fest/
+.. _AssertJ assertions: http://assertj.org/assertj-core-conditions.html
 .. _JUnit: http://www.junit.org/
 
 .. _man-testing-representations-deserialization:
@@ -122,7 +123,7 @@ Next, write a test for deserializing a ``Person`` instance from JSON:
 .. code-block:: java
 
     import static io.dropwizard.testing.FixtureHelpers.*;
-    import static org.fest.assertions.api.Assertions.assertThat;
+    import static org.assertj.core.api.Assertions.assertThat;
     import io.dropwizard.jackson.Jackson;
     import org.junit.Test;
     import com.fasterxml.jackson.databind.ObjectMapper;
@@ -140,7 +141,7 @@ Next, write a test for deserializing a ``Person`` instance from JSON:
     }
 
 
-This test uses `FEST matchers`_ and JUnit_ to test that when a ``Person`` instance is
+This test uses `AssertJ assertions`_ and JUnit_ to test that when a ``Person`` instance is
 deserialized via Jackson from the specified JSON fixture it matches the given object.
 
 .. _man-testing-resources:
@@ -156,7 +157,7 @@ loads a given resource instance in an in-memory Jersey server:
 
 .. code-block:: java
 
-    import static org.fest.assertions.api.Assertions.assertThat;
+    import static org.assertj.core.api.Assertions.assertThat;
     import static org.mockito.Mockito.*;
 
     public class PersonResourceTest {
@@ -210,8 +211,8 @@ easily.
 Should you, at some point, grow tired of the near-infinite amount of debug logging produced by
 ``ResourceTestRule`` you can use the ``java.util.logging`` API to silence the ``com.sun.jersey`` logger.
 
-Integrated Testing
-==================
+Integration Testing
+===================
 It can be useful to start up your entire app and hit it with real HTTP requests during testing. This can be
 achieved by adding ``DropwizardAppRule`` to your JUnit test class, which will start the app prior to any tests
 running and stop it again when they've completed (roughly equivalent to having used ``@BeforeClass`` and ``@AfterClass``).
