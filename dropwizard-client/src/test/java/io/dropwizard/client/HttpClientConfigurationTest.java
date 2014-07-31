@@ -1,7 +1,7 @@
 package io.dropwizard.client;
 
 import static io.dropwizard.testing.FixtureHelpers.fixture;
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import io.dropwizard.jackson.Jackson;
 import io.dropwizard.util.Duration;
 
